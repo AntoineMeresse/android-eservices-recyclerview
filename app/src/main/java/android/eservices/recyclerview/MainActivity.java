@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,7 +38,11 @@ public class MainActivity extends AppCompatActivity implements GameActionInterfa
 
         recyclerView = findViewById(R.id.my_recyclerview);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
+
+        // Layout :
+        //layoutManager = new LinearLayoutManager(this);
+        layoutManager = new GridLayoutManager(this,2);
+        // Assign layout
         recyclerView.setLayoutManager(layoutManager);
 
         //Use data generator to get data to display.
@@ -53,17 +58,18 @@ public class MainActivity extends AppCompatActivity implements GameActionInterfa
         //TODO write a method that displays a snackbar in the coordinator layout with the "message" parameter as content.
     }
 
+    //TODO create callback methods for item click
+    //Use ressource strings to get the text to display
+
     @Override
     public void onGameInfoClicked(String gameTitle) {
-        Log.e("GAMEINFOCLICKED", "onGameInfoClicked: "+gameTitle);
+        //Log.e("GAMEINFOCLICKED", "onGameInfoClicked: "+gameTitle);
+        Snackbar.make(coordinatorLayout, "Game Infos clicked : " + gameTitle, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onGameClicked(String gameTitle) {
-
+        Snackbar.make(coordinatorLayout, "Game clicked : "  + gameTitle, Snackbar.LENGTH_SHORT).show();
     }
-
-    //TODO create callback methods for item click
-    //Use ressource strings to get the text to display
 
 }

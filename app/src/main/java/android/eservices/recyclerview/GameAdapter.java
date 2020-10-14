@@ -59,9 +59,9 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         private ImageView gameImageView;
         private View view;
         private GameActionInterface gameActionInterface;
-
         // Buttons
         private ImageButton infoButton;
+        private ImageButton gameButton;
 
         public GameViewHolder(View view, GameActionInterface gameActionInterface){
             super(view);
@@ -69,7 +69,10 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
             this.gameTitleTextView = view.findViewById(R.id.title_textview);
             this.descriptionTextView = view.findViewById(R.id.description_textview);
             this.gameImageView = view.findViewById(R.id.icon_imageview);
+            // Buttons
             this.infoButton = view.findViewById(R.id.info_button);
+            this.gameButton = view.findViewById(R.id.game_button);
+            // Interface
             this.gameActionInterface = gameActionInterface;
         }
 
@@ -95,6 +98,12 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
                 }
             });
 
+            gameButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    gameActionInterface.onGameClicked(gameViewModel.getTitle());
+                }
+            });
         }
     }
 }
