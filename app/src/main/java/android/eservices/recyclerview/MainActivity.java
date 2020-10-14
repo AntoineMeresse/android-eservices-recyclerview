@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements GameActionInterfa
     }
 
     public void displaySnackBar(String message) {
-        //TODO write a method that displays a snackbar in the coordinator layout with the "message" parameter as content.
+        Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 
     //TODO create callback methods for item click
@@ -64,12 +64,12 @@ public class MainActivity extends AppCompatActivity implements GameActionInterfa
     @Override
     public void onGameInfoClicked(String gameTitle) {
         //Log.e("GAMEINFOCLICKED", "onGameInfoClicked: "+gameTitle);
-        Snackbar.make(coordinatorLayout, "Game Infos clicked : " + gameTitle, Snackbar.LENGTH_SHORT).show();
+        displaySnackBar("Game Infos clicked : " + gameTitle);
     }
 
     @Override
     public void onGameClicked(String gameTitle) {
-        Snackbar.make(coordinatorLayout, "Game clicked : "  + gameTitle, Snackbar.LENGTH_SHORT).show();
+        displaySnackBar("Game clicked : " + gameTitle);
     }
 
 }
