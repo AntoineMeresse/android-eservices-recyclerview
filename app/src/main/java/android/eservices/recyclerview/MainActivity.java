@@ -1,6 +1,8 @@
 package android.eservices.recyclerview;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,9 +10,11 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GameActionInterface{
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         //Use data generator to get data to display.
         List<GameViewModel> myDataset = DataGenerator.generateData();
 
-        GameAdapter gameAdapter = new GameAdapter();
+        GameAdapter gameAdapter = new GameAdapter(this);
         recyclerView.setAdapter(gameAdapter);
 
         gameAdapter.bindGameViewModelList(myDataset);
@@ -47,6 +51,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void displaySnackBar(String message) {
         //TODO write a method that displays a snackbar in the coordinator layout with the "message" parameter as content.
+    }
+
+    @Override
+    public void onGameInfoClicked(String gameTitle) {
+        Log.e("GAMEINFOCLICKED", "onGameInfoClicked: "+gameTitle);
+    }
+
+    @Override
+    public void onGameClicked(String gameTitle) {
+
     }
 
     //TODO create callback methods for item click
